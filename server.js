@@ -20,12 +20,12 @@ app.use(bodyParser.json());
 app.post('/api/messages', async (req, res) => {
   try {
     const [insertResult] = await pool.query(
-      'INSERT INTO messages (content) VALUES (?)',
-      [req.body.content]
+      'INSERT INTO messages (message) VALUES (?)',
+      [req.body.message]
     );
 
     // 假设日期字段由数据库自动填充
-    const insertedMessage = { id: insertResult.insertId, content: req.body.content };
+    const insertedMessage = { id: insertResult.insertId, message: req.body.message };
 
     res.status(201).json(insertedMessage);
   } catch (error) {
@@ -37,7 +37,7 @@ app.post('/api/messages', async (req, res) => {
 app.get('/api/messages', async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT * FROM messages ORDER BY date DESC');
-    res.json(rows.map(row => ({ id: row.id, content: row.content, date: row.date })));
+    res.json(rows.map(row => ({ id: row.id, message: row.message, date: row.date })));
   } catch (error) {
     res.status(500).json({ error: '获取留言列表时发生错误' });
   }
