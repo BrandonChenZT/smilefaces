@@ -5,8 +5,8 @@ const mysql = require('mysql2/promise');
 // 创建数据库连接池
 const pool = mysql.createPool({
   host: 'localhost',
-  user: 'your_mysql_user',
-  password: 'your_mysql_password',
+  user: 'brandy',
+  password: '123456',
   database: 'message_board_db',
   waitForConnections: true,
   connectionLimit: 10,
@@ -20,12 +20,12 @@ app.use(bodyParser.json());
 app.post('/api/messages', async (req, res) => {
   try {
     const [insertResult] = await pool.query(
-      'INSERT INTO messages (name, content) VALUES (?, ?)',
-      [req.body.name, req.body.message]
+      'INSERT INTO messages (content) VALUES (?, ?)',
+      [req.body.content]
     );
 
     // 假设日期字段由数据库自动填充
-    const insertedMessage = { id: insertResult.insertId, name: req.body.name, content: req.body.message };
+    const insertedMessage = { id: insertResult.insertId, content: req.body.content };
 
     res.status(201).json(insertedMessage);
   } catch (error) {
@@ -37,7 +37,7 @@ app.post('/api/messages', async (req, res) => {
 app.get('/api/messages', async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT * FROM messages ORDER BY date DESC');
-    res.json(rows);
+    res.json(rows.map(row => ({ id: row.id, content: row.content, date: row.date })));
   } catch (error) {
     res.status(500).json({ error: '获取留言列表时发生错误' });
   }

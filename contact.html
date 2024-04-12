@@ -44,20 +44,17 @@
         document.getElementById('message-form').addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            const nameInput = document.getElementById('name');
             const messageInput = document.getElementById('message');
-            const name = nameInput.value;
             const message = messageInput.value;
 
             try {
                 const response = await fetch('/api/messages', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, message })
+                    body: JSON.stringify({ message })
                 });
 
                 if (response.ok) {
-                    nameInput.value = '';
                     messageInput.value = '';
 
                     await refreshMessages();
@@ -77,7 +74,7 @@
 
                 messageList.innerHTML = messages.map(message => `
                     <li>
-                        <strong>${message.name}</strong>: ${message.content} （发表于 ${new Date(message.date).toLocaleString()}）
+                        ${message.content} （发表于 ${new Date(message.date).toLocaleString()}）
                     </li>
                 `).join('');
             } catch (error) {
