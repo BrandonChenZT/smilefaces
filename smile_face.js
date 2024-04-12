@@ -5,7 +5,7 @@ let faces = [];
 let smileyFaceIndexInArray = -1; // 记录笑脸在faces数组中的索引
 let startTime = null;
 let 笑脸次数 = 0;
-const countdownTime = 310000;
+const countdownTime = 120;
 let countdownIntervalId = null;
 
 const startButton = document.getElementById('start-button');
