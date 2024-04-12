@@ -84,21 +84,24 @@ footer a:hover {
 }
 
 /* 游戏容器样式 */
+.container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* 可选，保持图像的纵横比并填满其容器 */
+}
+
+/* 其他CSS代码不变... */
 .container {
     display: grid;
-    grid-template-columns: repeat(5, 120px); /* 调整为更合适的尺寸 */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 改为自动填充，并设置最小和最大列宽 */
     grid-gap: 5px;
-    width: auto; /* 让容器宽度自适应 */
+    width: 100%; /* 让容器宽度占满父元素宽度 */
     margin: 10px 0;
-    /* margin-left: auto;
-    margin-right: auto; */
-      /* display: flex;
-    justify-content: center; */
 }
 
 .face {
-    width: 120px; /* 调整为更合适的尺寸 */
-    height: 120px;
+    width: 100%; /* 将固定像素尺寸改为百分比 */
+    height: 100%;
     cursor: pointer;
 }
 #message-board {
