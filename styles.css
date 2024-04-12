@@ -1,0 +1,103 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #62a8ea, #9dc6f1);
+    color: #333;
+    line-height: 1.6;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #62a8ea, #9dc6f1); /* 渐变背景 */
+    color: #333;
+    line-height: 1.6;
+}
+header {
+    background: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+    backdrop-filter: blur(20px); /* 背景模糊效果 */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1 {
+    margin: 0;
+    color: #333;
+    font-size: 2rem;
+}
+nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav li {
+    padding: 0.5rem 1rem;
+}
+nav a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+nav a:hover {
+    color: #62a8ea;
+}
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto; /* 居中显示 */
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    border-radius: 8px; /* 圆角边框 */
+}
+footer {
+    background: linear-gradient(135deg, #62a8ea, #9dc6f1); /* 渐变背景 */
+    color: white;
+    text-align: center;
+    padding: 1rem 2rem;
+    position: static;
+    bottom: 0;
+    width: 100%;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease-in-out;
+}
+footer a:hover {
+    color: #62a8ea;
+}
+
+.portfolio-item {
+    margin-bottom: 20px;
+}
+
+.portfolio-item h3 {
+    font-size: 1.5rem;
+}
+
+.portfolio-item p {
+    font-size: 1rem;
+}
+
+/* 游戏容器样式 */
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 85px); /* 调整为更合适的尺寸 */
+    grid-gap: 5px;
+    width: auto; /* 让容器宽度自适应 */
+    margin: 10px 0;
+    /* margin-left: auto;
+    margin-right: auto; */
+      /* display: flex;
+    justify-content: center; */
+}
+
+.face {
+    width: 100px; /* 调整为更合适的尺寸 */
+    height: 100px;
+    cursor: pointer;
+}
