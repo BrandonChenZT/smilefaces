@@ -42,48 +42,31 @@
     <!-- 将JavaScript脚本添加到HTML文件底部，确保DOM加载完成 -->
     <script>
         document.getElementById('message-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
+    event.preventDefault();
 
-            const messageInput = document.getElementById('message');
-            const message = messageInput.value;
+    const messageInput = document.getElementById('message');
+    const message = messageInput.value;
 
-            try {
-                const response = await fetch('/api/messages', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message })
-                });
-
-                if (response.ok) {
-                    messageInput.value = '';
-
-                    await refreshMessages();
-                } else {
-                    alert('留言提交失败，请稍后再试。');
-                }
-            } catch (error) {
-                console.error('留言提交时发生错误:', error);
-            }
+    try {
+        const response = await fetch('/api/messages', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
         });
 
-        async function refreshMessages() {
-            const messageList = document.getElementById('message-list');
-            try {
-                const response = await fetch('/api/messages');
-                const messages = await response.json();
-
-                messageList.innerHTML = messages.map(message => `
-                    <li>
-                        ${message.content} （发表于 ${new Date(message.date).toLocaleString()}）
-                    </li>
-                `).join('');
-            } catch (error) {
-                console.error('获取留言列表时发生错误:', error);
-            }
+        if (response.ok) {
+            messageInput.value = '';
+            alert('留言已成功上传！'); // 添加提示信息
+        } else {
+            alert('留言提交失败，请稍后再试。');
         }
+    } catch (error) {
+        console.error('留言提交时发生错误:', error);
+        alert('留言提交过程中发生错误，请检查网络连接或稍后再试。'); // 添加错误提示信息
+    }
+});
 
-        // 页面加载完成后立即加载留言列表
-        window.onload = refreshMessages;
+        
     </script>
 </body>
 </html>
