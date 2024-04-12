@@ -86,7 +86,7 @@ footer a:hover {
 /* 游戏容器样式 */
 .container {
     display: grid;
-    grid-template-columns: repeat(5, 85px); /* 调整为更合适的尺寸 */
+    grid-template-columns: repeat(5, 120px); /* 调整为更合适的尺寸 */
     grid-gap: 5px;
     width: auto; /* 让容器宽度自适应 */
     margin: 10px 0;
@@ -97,8 +97,8 @@ footer a:hover {
 }
 
 .face {
-    width: 100px; /* 调整为更合适的尺寸 */
-    height: 100px;
+    width: 120px; /* 调整为更合适的尺寸 */
+    height: 120px;
     cursor: pointer;
 }
 #message-board {
