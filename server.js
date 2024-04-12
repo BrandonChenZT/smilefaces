@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.post('/api/messages', async (req, res) => {
   try {
     const [insertResult] = await pool.query(
-      'INSERT INTO messages (content) VALUES (?, ?)',
+      'INSERT INTO messages (content) VALUES (?)',
       [req.body.content]
     );
 
