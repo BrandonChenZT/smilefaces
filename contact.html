@@ -44,14 +44,14 @@
         document.getElementById('message-form').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const messageInput = document.getElementById('message');
-    const message = messageInput.value;
+    const messageInput = document.getElementById('content');
+    const content = messageInput.value;
 
     try {
         const response = await fetch('/api/messages', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message })
+            body: JSON.stringify({ content })
         });
 
         if (response.ok) {
