@@ -16,6 +16,18 @@ const pool = mysql.createPool({
 const app = express();
 app.use(bodyParser.json());
 
+const rateLimit = require("express-rate-limit"); // 引入rate-limit中间件
+
+// 定义一个每分钟允许10次请求的速率限制中间件
+const apiLimiter = rateLimit({
+  windowMs: 60 * 1000, // 限制的时间窗口为1分钟
+  max: 10, // 在这时间窗口内允许的最大请求数量
+  message: "您的请求过于频繁，请稍后再试。",
+});
+
+// 将速率限制中间件应用到留言提交路由上
+app.use("/api/messages", apiLimiter);
+
 // 处理留言提交
 app.post('/api/messages', async (req, res) => {
   try {

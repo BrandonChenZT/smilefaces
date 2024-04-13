@@ -41,9 +41,15 @@
 
     <!-- 将JavaScript脚本添加到HTML文件底部，确保DOM加载完成 -->
     <script>
-        document.getElementById('message-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
+    let canSubmit = true;
 
+document.getElementById('message-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    
+    if (!canSubmit) return; // 如果不能提交，则直接返回
+
+    canSubmit = false; // 提交前立即禁用提交
+    
     const messageInput = document.getElementById('message');
     const content = messageInput.value;
 
@@ -56,13 +62,24 @@
 
         if (response.ok) {
             messageInput.value = '';
-            alert('留言已成功上传！'); // 添加提示信息
+            alert('留言已成功上传！');
         } else {
             alert('留言提交失败，请稍后再试。');
         }
+
+        // 重新启用提交功能，例如在3秒后
+        setTimeout(() => {
+            canSubmit = true;
+        }, 6000);
+
     } catch (error) {
         console.error('留言提交时发生错误:', error);
-        alert('留言提交过程中发生错误，请检查网络连接或稍后再试。'); // 添加错误提示信息
+        alert('留言提交过程中发生错误，请检查网络连接或稍后再试。');
+
+        // 即使出现错误，仍会在3秒后重新启用提交功能
+        setTimeout(() => {
+            canSubmit = true;
+        }, 6000);
     }
 });
 
