@@ -139,3 +139,34 @@ footer a:hover {
 #message-form button:hover {
     background-color: #4cae4c;
 }
+
+.container img {
+    max-width: 100%; /* 设置图片最大宽度为容器宽度 */
+    height: auto; /* 高度自动，保持图片比例 */
+    object-fit: cover; /* 覆盖容器，保持图片的纵横比 */
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 自动填充列数，最小列宽为100px，最大列宽为可用空间的一份额 */
+    grid-gap: 5px; /* 设置网格间隔 */
+    width: 100%; /* 容器宽度占满父元素宽度 */
+    margin: 10px 0;
+}
+
+@media (max-width: 600px) {
+    .container img {
+        max-width: 80px; /* 小屏幕下，设置较小的图片尺寸 */
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1200px) {
+    .container img {
+        max-width: 120px; /* 中等屏幕下，设置中等的图片尺寸 */
+    }
+}
+
+@media (min-width: 1201px) {
+    .container img {
+        max-width: 150px; /* 大屏幕下，设置较大的图片尺寸 */
+    }
+}
