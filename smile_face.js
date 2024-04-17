@@ -4,13 +4,9 @@ const timerDisplay = document.getElementById('timer');
 let faces = [];
 let smileyFaceIndexInArray = -1; // 记录笑脸在faces数组中的索引
 let startTime = null;
-let correctGuesses = 0;
-let incorrectGuesses = 0;
+let 笑脸次数 = 0;
 const countdownTime = 120;
 let countdownIntervalId = null;
-
-
-// let correctGuesses = 0; // 记录正确的笑脸猜测次数
 
 const startButton = document.getElementById('start-button');
 startButton.addEventListener('click', startGame);
@@ -20,7 +16,7 @@ function startGame() {
         clearInterval(countdownIntervalId);
     }
     container.innerHTML = ''; // 清空容器
-    correctGuesses = 0; // 重置笑脸次数
+    笑脸次数 = 0; // 重置笑脸次数
     const smileyFace = selectSmileyFace(); // 随机选择一个笑脸
     initGame(); // 初始化游戏
     startTime = performance.now(); // 记录游戏开始时间
@@ -132,7 +128,7 @@ function handleClick(event) {
     if (clickedFaceIndex >= 0 && clickedFaceIndex < faces.length) { // 确保索引有效
         const face = faces[clickedFaceIndex];
         if (face.isSmiley) { // 如果是笑脸
-            correctGuesses++; // 找到笑脸，增加次数
+            笑脸次数++; // 找到笑脸，增加次数
             messageElem.textContent = '恭喜你，找到了笑脸！';
             messageElem.style.display = 'block';
             setTimeout(() => {
@@ -143,17 +139,13 @@ function handleClick(event) {
             });
         
         } else {
-            incorrectGuesses++;
             messageElem.textContent = '很遗憾，这不是笑脸。';
             messageElem.style.display = 'block';
             setTimeout(() => {
                 messageElem.style.display = 'none';
             }, 2000);
-            refreshFaces();
         }
-
     }
-    
 }
 function refreshFaces() {
     faces.forEach(face => {
@@ -167,10 +159,7 @@ function refreshFaces() {
 function finishGame() {
     clearInterval(countdownIntervalId); // 停止倒计时
     container.innerHTML = ''; // 清空图片
-    const totalAttempts = correctGuesses + incorrectGuesses; // 总尝试次数
-    const accuracy = Math.round((correctGuesses / totalAttempts) * 100); // 计算正确率
-    messageElem.textContent = `时间到！你共尝试了 ${totalAttempts} 次，正确率为 ${accuracy}%。`;
-    // messageElem.textContent = '时间到！你找到了 ' + correctGuesses + ' 次笑脸。';
+    messageElem.textContent = '时间到！你找到了 ' + 笑脸次数 + ' 次笑脸。';
     messageElem.style.display = 'block';
     startButton.style.display = 'block'; // 显示开始按钮
 }
