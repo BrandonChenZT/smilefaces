@@ -149,7 +149,6 @@ function handleClick(event) {
             setTimeout(() => {
                 messageElem.style.display = 'none';
             }, 2000);
-            refreshFaces();
         }
 
     }
@@ -169,8 +168,8 @@ function finishGame() {
     container.innerHTML = ''; // 清空图片
     const totalAttempts = correctGuesses + incorrectGuesses; // 总尝试次数
     const accuracy = Math.round((correctGuesses / totalAttempts) * 100); // 计算正确率
-    messageElem.textContent = `时间到！你共尝试了 ${totalAttempts} 次，正确率为 ${accuracy}%。`;
-    // messageElem.textContent = '时间到！你找到了 ' + correctGuesses + ' 次笑脸。';
+    messageElem.textContent = `时间到！你共尝试了 ${totalAttempts} 次，正确率为 ${accuracy}%。  
+    你找到了 ' + correctGuesses + ' 次笑脸。'`;
     messageElem.style.display = 'block';
     startButton.style.display = 'block'; // 显示开始按钮
 }
