@@ -84,26 +84,64 @@ footer a:hover {
 }
 
 /* 游戏容器样式 */
-.container img {
+#game-container {
+    display: grid;
+    width: 100%;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+/* 笑脸图片的基础样式 */
+.face {
     width: 100%;
     height: auto;
-    object-fit: cover; /* 可选，保持图像的纵横比并填满其容器 */
-}
-
-/* 其他CSS代码不变... */
-.container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 改为自动填充，并设置最小和最大列宽 */
-    grid-gap: 5px;
-    width: 100%; /* 让容器宽度占满父元素宽度 */
-    margin: 10px 0;
-}
-
-.face {
-    width: 100%; /* 将固定像素尺寸改为百分比 */
-    height: 100%;
     cursor: pointer;
+    object-fit: cover;
+    border: 2px solid transparent;
 }
+
+/* 选中的笑脸图片样式 */
+.face.selected {
+    border-color: #4CAF50;
+}
+
+/* 消息提示元素的基础样式 */
+#message {
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+}
+
+/* 倒计时计时器的基础样式 */
+#timer {
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* 媒体查询 - 针对小屏幕设备 */
+@media (max-width: 767px) {
+    #game-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+/* 媒体查询 - 针对中等屏幕设备 */
+@media (min-width: 768px) and (max-width: 1199px) {
+    #game-container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+}
+
+/* 媒体查询 - 针对大屏幕设备 */
+@media (min-width: 1200px) {
+    #game-container {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+}
+
 #message-board {
     max-width: 600px;
     margin: 20px auto;

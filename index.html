@@ -14,6 +14,8 @@
             <li><a href="about.html">关于我</a></li>
             <li><a href="portfolio.html">作品集</a></li>
             <li><a href="contact.html">联系方式</a></li>
+            <li><a href="login.html">登录</a></li>
+            <li><a href="register.html">注册</a></li>
         </nav>
     </header>
     <main>
@@ -21,17 +23,27 @@
         <div class="portfolio-item">
             <h3>笑脸识别游戏</h3>
             <p>这是一个简单的笑脸识别游戏，玩家需要在限定时间内找出隐藏的笑脸。</p>
-            <div class="container" id="game-container"></div>
-            <div id="message" class="message"></div>
-            <div id="timer" class="timer">120</div>
+            <!-- 添加等级选择、开始按钮和游戏容器 -->
+            <label for="level-select">选择等级:</label>
+            <select id="level-select">
+                <option value="3">Level 1 (3x3)</option>
+                <option value="4">Level 2 (4x4)</option>
+                <option value="5">Level 3 (5x5)</option>
+            </select>
             <button id="start-button">开始游戏</button>
+            <!-- 游戏容器 -->
+            <div id="game-container"></div>
+            <!-- 消息提示 -->
+            <div id="message" class="message"></div>
+            <!-- 倒计时计时器 -->
+            <div id="timer" class="timer">120</div>
         </div>
         <!-- 页面内容将根据用户的点击跳转到相应的页面 -->
     </main>
     <footer>
         <p>版权所有 &copy; 2024 我的个人网站</p>
-        <p>联系邮箱: email@example.com | <a href="https://github.com/yourusername">GitHub</a></p> 
+        <p>联系邮箱: email@example.com | <a href="https://github.com/yourusername">GitHub</a></p>  
     </footer>
+    <script src="smile_face.js"></script>
 </body>
-<script src="smile_face.js"></script>
 </html>
