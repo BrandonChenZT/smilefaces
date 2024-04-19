@@ -162,3 +162,45 @@ function finishGame() {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function sendGameDataToServer(gameData) {
+    const url = '/api/submit-game-data';
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(gameData)
+    };
+
+    fetch(url, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log('Game data submitted successfully:', data);
+            // 处理成功的回调操作
+        })
+        .catch(error => {
+            console.error('Error submitting game data:', error);
+            // 处理错误的回调操作
+        });
+}
+
+// 游戏结束时，构建要发送的数据
+
+const userEmail = localStorage.getItem('email');
+const gameData = {
+    userId: userEmail,
+    level: currentLevel,
+    timePlayed: countdownTime - remainingTime,
+    correctGuesses: correctGuesses,
+    incorrectGuesses: incorrectGuesses,
+    accuracy: accuracy,
+};
+
+// 发送POST请求
+sendGameDataToServer(gameData);
