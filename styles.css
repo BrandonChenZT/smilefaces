@@ -97,12 +97,7 @@ footer a:hover {
     height: auto;
     cursor: pointer;
     object-fit: cover;
-    border: 2px solid transparent;
-}
-
-/* 选中的笑脸图片样式 */
-.face.selected {
-    border-color: #4CAF50;
+    border: 1px solid transparent;
 }
 
 /* 消息提示元素的基础样式 */

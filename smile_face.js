@@ -50,7 +50,7 @@ function selectSmileyFace() {
 }
 function initGame(level = parseInt(document.getElementById('level-select').value)) {
     faces = [];
-    smileyFaceIndexInArray = getRandomInt(0, 24);
+    smileyFaceIndexInArray = getRandomInt(0, level*level-1);
     const numberOfFaces = level * level;
     const usedFaces = new Set(); // 用于跟踪已经使用过的图片
     // 随机选择一个笑脸图片
