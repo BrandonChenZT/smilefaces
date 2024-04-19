@@ -20,7 +20,7 @@
             <h2>留言板</h2>
             <form id="message-form">
                 <label for="message">留言:</label>
-                <textarea id="message" name="message" required></textarea><br><br>
+                <textarea id="bmessage" name="bmessage" required></textarea><br><br>
                 <button type="submit">提交留言</button>
             </form>
             <div id="messages-container">
@@ -50,7 +50,7 @@ document.getElementById('message-form').addEventListener('submit', async (event)
 
     canSubmit = false; // 提交前立即禁用提交
     
-    const messageInput = document.getElementById('message');
+    const messageInput = document.getElementById('bmessage');
     const content = messageInput.value;
 
     if (content.length > 500) {
