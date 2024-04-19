@@ -121,25 +121,16 @@ function handleClick(event) {
     const clickedFaceIndex = clickedFace.index; // 通过索引属性获取被点击图片的索引
     if (clickedFaceIndex >= 0 && clickedFaceIndex < faces.length) { // 确保索引有效
         const face = faces[clickedFaceIndex];
-        if (face.isSmiley) { // 如果是笑脸
-            correctGuesses++; // 找到笑脸，增加次数
+        if (face.isSmiley) {
+            correctGuesses++;
             messageElem.textContent = '恭喜你，找到了笑脸！';
-            messageElem.style.display = 'block';
-            setTimeout(() => {
-                messageElem.style.display = 'none'
-            }, 2000);
-            setTimeout(() => {
-                refreshFaces();
-            });
-        
+            refreshFaces();
         } else {
-            incorrectGuesses++; // 未找到笑脸，增加次数
+            incorrectGuesses++;
             messageElem.textContent = '很遗憾，这不是笑脸。';
-            messageElem.style.display = 'block';
-            setTimeout(() => {
-                messageElem.style.display = 'none';
-            }, 2000);
         }
+        messageElem.style.display = 'block';
+        messageUpdated = true;
     }
 }
 function refreshFaces() {
@@ -153,11 +144,10 @@ function refreshFaces() {
 function finishGame() {
     clearInterval(countdownIntervalId); // 停止倒计时
     container.innerHTML = ''; // 清空图片
-    messageElem.textContent = '时间到！你找到了 ' + correctGuesses + ' 次笑脸。';
     const totalAttempts = correctGuesses + incorrectGuesses; // 总尝试次数
     const accuracy = Math.round((correctGuesses / totalAttempts) * 100); // 计算正确率
     messageElem.textContent = `时间到！你共尝试了 ${totalAttempts} 次，正确率为 ${accuracy}%。  
-    你找到了 ' + correctGuesses + ' 次笑脸。'`;
+    你找到了 ${correctGuesses} 次笑脸。'`;
     messageElem.style.display = 'block';
     startButton.style.display = 'block'; // 显示开始按钮
     const level = parseInt(document.getElementById('level-select').value);
