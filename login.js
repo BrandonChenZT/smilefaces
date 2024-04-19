@@ -41,7 +41,7 @@ app.post('/api/login', async (req, res) => {
     const jwtSecret = process.env.JWT_SECRET || 'your_jwt_secret'; // 建议从环境变量获取
     const token = jwt.sign({ userId: rows[0].id }, jwtSecret, { expiresIn: '1h' });
 
-    res.json({ token });
+    res.json({ token, email: rows[0].email });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: '服务器内部错误' });
