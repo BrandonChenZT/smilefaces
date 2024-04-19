@@ -4,7 +4,8 @@ const timerDisplay = document.getElementById('timer');
 let faces = [];
 let smileyFaceIndexInArray = -1; // 记录笑脸在faces数组中的索引
 let startTime = null;
-let 笑脸次数 = 0;
+let correctGuesses = 0;
+let incorrectGuesses = 0;
 const countdownTime = 120;
 let countdownIntervalId = null;
 const startButton = document.getElementById('start-button');
@@ -14,7 +15,7 @@ function startGame() {
         clearInterval(countdownIntervalId);
     }
     container.innerHTML = ''; // 清空容器
-    笑脸次数 = 0; // 重置笑脸次数
+    correctGuesses = 0; // 重置笑脸次数
     const smileyFace = selectSmileyFace(); // 随机选择一个笑脸
     // 获取所选等级
     const level = parseInt(document.getElementById('level-select').value);
@@ -121,7 +122,7 @@ function handleClick(event) {
     if (clickedFaceIndex >= 0 && clickedFaceIndex < faces.length) { // 确保索引有效
         const face = faces[clickedFaceIndex];
         if (face.isSmiley) { // 如果是笑脸
-            笑脸次数++; // 找到笑脸，增加次数
+            correctGuesses++; // 找到笑脸，增加次数
             messageElem.textContent = '恭喜你，找到了笑脸！';
             messageElem.style.display = 'block';
             setTimeout(() => {
@@ -132,6 +133,7 @@ function handleClick(event) {
             });
         
         } else {
+            incorrectGuesses++; // 未找到笑脸，增加次数
             messageElem.textContent = '很遗憾，这不是笑脸。';
             messageElem.style.display = 'block';
             setTimeout(() => {
@@ -151,13 +153,24 @@ function refreshFaces() {
 function finishGame() {
     clearInterval(countdownIntervalId); // 停止倒计时
     container.innerHTML = ''; // 清空图片
-    messageElem.textContent = '时间到！你找到了 ' + 笑脸次数 + ' 次笑脸。';
+    messageElem.textContent = '时间到！你找到了 ' + correctGuesses + ' 次笑脸。';
     const totalAttempts = correctGuesses + incorrectGuesses; // 总尝试次数
     const accuracy = Math.round((correctGuesses / totalAttempts) * 100); // 计算正确率
     messageElem.textContent = `时间到！你共尝试了 ${totalAttempts} 次，正确率为 ${accuracy}%。  
     你找到了 ' + correctGuesses + ' 次笑脸。'`;
     messageElem.style.display = 'block';
     startButton.style.display = 'block'; // 显示开始按钮
+    const level = parseInt(document.getElementById('level-select').value);
+    const userEmail = localStorage.getItem('email');
+    const gameData = {
+    userId: userEmail,
+    level: level,
+    timePlayed: countdownTime,
+    correctGuesses: correctGuesses,
+    incorrectGuesses: incorrectGuesses,
+    accuracy: accuracy,
+};
+    sendGameDataToServer(gameData);
 }
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -192,15 +205,5 @@ function sendGameDataToServer(gameData) {
 
 // 游戏结束时，构建要发送的数据
 
-const userEmail = localStorage.getItem('email');
-const gameData = {
-    userId: userEmail,
-    level: currentLevel,
-    timePlayed: countdownTime - remainingTime,
-    correctGuesses: correctGuesses,
-    incorrectGuesses: incorrectGuesses,
-    accuracy: accuracy,
-};
 
 // 发送POST请求
-sendGameDataToServer(gameData);
