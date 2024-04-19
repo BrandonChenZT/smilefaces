@@ -180,3 +180,7 @@ footer a:hover {
   margin-left: 1rem;
   color: #333; 
 }
+
+.hidden {
+    display: none;
+}
