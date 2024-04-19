@@ -177,3 +177,11 @@ footer a:hover {
 #message-form button:hover {
     background-color: #4cae4c;
 }
+
+/* styles.css */
+.user-email {
+  /* 添加适合样式 */
+  display: inline-block;
+  margin-left: 1rem;
+  color: #333; 
+}

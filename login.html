@@ -45,7 +45,52 @@
         <p>联系邮箱: email@example.com | <a href="https://github.com/yourusername">GitHub</a></p>
     </footer>
 
-    <!-- 可能需要的登录验证或其他交互逻辑脚本 -->
-    <script></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const emailInput = document.getElementById('email-input');
+  const passwordInput = document.getElementById('password-input');
+
+  const email = emailInput.value;
+  const password = passwordInput.value;
+
+  try {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`登录失败: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    // 登录成功后的操作，例如存储Token、跳转页面等
+    if(data.email) {
+      localStorage.setItem('email', data.email);
+
+      const navEmailElement = document.createElement('li');
+      navEmailElement.textContent = data.email;
+
+      const navList = document.querySelector('nav > li');
+      navList.appendChild(navEmailElement);
+
+      navEmailElement.classList.add('user-email');
+    }
+
+    localStorage.setItem('authToken', data.token);
+    window.location.href = '/index.html';
+  } catch (error) {
+    alert(`登录失败: ${error.message}`);
+  }
+});
+    </script>
 </body>
 </html>

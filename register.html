@@ -45,9 +45,48 @@
         <p>联系邮箱: email@example.com | <a href="https://github.com/yourusername">GitHub</a></p>
     </footer>
 
-    <!-- 可能需要的注册验证或其他交互逻辑脚本 -->
     <script>
-        
+        document.getElementById('register-form').addEventListener('submit', async (event) => {
+  event.preventDefault(); // 阻止表单默认提交行为
+
+  const emailInput = document.getElementById('email-input-reg');
+  const passwordInput = document.getElementById('password-input-reg');
+  const confirmPasswordInput = document.getElementById('confirm-password-input-reg');
+
+  const email = emailInput.value;
+  const password = passwordInput.value;
+  const confirm_password = confirmPasswordInput.value;
+
+  // 验证密码一致性
+  if (passwordInput.value !== confirmPasswordInput.value) {
+    alert('两次输入的密码不一致，请重新输入');
+    return;
+  }
+
+  // 发送异步POST请求到服务器进行注册
+  try {
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        confirm_password,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to register: ${response.statusText}`);
+    }
+
+    // 注册成功，跳转至登录页或其他页面
+    window.location.href = '/login.html';
+  } catch (error) {
+    alert(`注册失败: ${error.message}`);
+  }
+});
     </script>
 
 </body>

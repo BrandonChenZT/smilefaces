@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        window.onload = function() {
+            const authToken = localStorage.getItem('authToken');
+            const email = localStorage.getItem('email');
+            if (email) {
+                document.title = '个人主页 - ' + email.split('@')[0];
+                document.querySelector('header h1').textContent = email;
+            } else {
+                document.title = '个人主页';
+                document.querySelector('header h1').textContent = '个人主页';
+            }
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <nav>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="about.html">关于我</a></li>
+            <li><a href="portfolio.html">作品集</a></li>
+            <li><a href="contact.html">联系方式</a></li>
+        </nav>
+    </header>
+    <main>
+        <p>This is my profile.</p>
+    </main>
+    <footer>
+        <p>版权所有 &copy; 2024 我的个人网站</p>
+        <p>联系邮箱: email@example.com | <a href="https://github.com/yourusername">GitHub</a></p> 
+    </footer>
+    
+</body>
+</html>
