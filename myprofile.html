@@ -67,6 +67,7 @@
     </footer>
     <script>
         let userEmail = localStorage.getItem('email');
+	let index = 1;
 
         if (userEmail !== null) {
     // 发送GET请求获取用户的游戏数据
@@ -90,7 +91,7 @@
                     const newRow = document.createElement('tr');
 
                     newRow.innerHTML = `
-                        <td>${gameRecord.id}</td>
+                        <td>${index++}</td>
                         <td>${new Date(gameRecord.played_at).toLocaleDateString()}</td>
                         <td>${gameRecord.level}</td>
                         <td>${gameRecord.time_played}</td>

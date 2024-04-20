@@ -23,29 +23,21 @@ connection.connect((err) => {
 // 定义接收游戏数据的路由
 app.post('/api/submit-game-data', (req, res) => {
     const gameData = req.body;
-
-    const sql = `
-        INSERT INTO games (user_id, level, time_played, correct_guesses, incorrect_guesses, accuracy)
-        VALUES (?, ?, ?, ?, ?, ?)
-    `;
-    const values = [
-        gameData.userId,
-        gameData.level,
-        gameData.timePlayed,
-        gameData.correctGuesses,
-        gameData.incorrectGuesses,
-        gameData.accuracy,
-    ];
-
-    connection.query(sql, values, (error) => {
-        if (error) {
-            console.error('Error saving game data to the database:', error);
-            res.status(500).send('Internal Server Error');
-        } else {
-            console.log('Game data saved successfully to the database.');
-            res.status(200).send('Game data received successfully!');
-        }
-    });
+    connection.query(
+    'INSERT INTO games SET ?',
+    gameData,
+    function (error, results, fields) {
+       if (error) throw error;
+    // 插入成功后执行的操作...
+      if (error) {
+              console.error('Error saving game data to the database:', error);
+              res.status(500).send('Internal Server Error');
+          } else {
+              console.log('Game data saved successfully to the database.');
+              res.status(200).send('Game data received successfully!');
+          }
+  }
+);
 });
 
 app.get('/api/user-game-data/:userEmail', (req, res) => {
@@ -69,35 +61,41 @@ app.get('/api/user-game-data/:userEmail', (req, res) => {
     });
 });
 
-async function getRecentGameData(userId, limit = 10) {
-    const [rows] = await connection.execute(`
-      SELECT *
-      FROM games
-      WHERE user_id = ?
-      ORDER BY played_at DESC
-      LIMIT ?
-    `, [userId, limit]);
-  
-    return rows;
-  }
-
+function getRecentGameData(userId, limit = 10, callback) {
+  connection.query(`
+    SELECT *
+    FROM games
+    WHERE user_id = ?
+    ORDER BY played_at DESC
+    LIMIT ?
+  `, [userId, parseInt(limit, 10)], function (error, results, fields) {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, results);
+  });
+}
   app.get('/api/user-game-data', async (req, res) => {
-    try {
-      const { userId, limit = 10 } = req.query;
-  
-      const recentGameData = await getRecentGameData(userId, limit);
-  
+  try {
+    const { userId, limit = 10 } = req.query;
+
+    getRecentGameData(userId, limit, (err, recentGameData) => {
+      if (err) {
+        console.error('Error fetching recent game data:', err);
+        return res.status(500).json({ error: 'Failed to fetch recent game data' });
+      }
+
       if (recentGameData.length === 0) {
         return res.status(404).json({ message: 'No game data found for the given user' });
       }
-  
-      res.json(recentGameData);
-    } catch (error) {
-      console.error('Error fetching recent game data:', error);
-      res.status(500).json({ error: 'Failed to fetch recent game data' });
-    }
-  });
 
+      res.json(recentGameData);
+    });
+  } catch (error) {
+    console.error('Error processing request:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 // 启动Express服务器
 const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

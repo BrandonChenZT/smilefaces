@@ -10,11 +10,6 @@ const countdownTime = 120;
 let countdownIntervalId = null;
 const startButton = document.getElementById('start-button');
 startButton.addEventListener('click', startGame);
-let levelUnlocks = {
-    level2: false,
-    level3: false,
-    };
-
 function startGame() {
     if (countdownIntervalId) {
         clearInterval(countdownIntervalId);
@@ -28,15 +23,16 @@ function startGame() {
     // 更新游戏容器的CSS样式以适应所选等级的网格布局
     container.style.gridTemplateColumns = `repeat(${level}, 1fr)`;
     container.style.gridTemplateRows = `repeat(${level}, 1fr)`;
-    initGame(level); // 初始化游戏
-    updateUnlockUI();
+    initGame(); // 初始化游戏
     startTime = performance.now(); // 记录游戏开始时间
     displayTimer(); // 显示倒计时
     messageElem.style.display = 'none'; // 隐藏消息提示
     startButton.style.display = 'none'; // 隐藏开始按钮
 }
-
 function selectSmileyFace() {
+    // 假设笑脸图片的文件名以 "_smile" 结尾
+    // const smileyFaces = ['smileface/face1_smile.jpg', 'smileface/face2_smile.jpg', 'smileface/face3_smile.jpg', 
+    // 'smileface/face4_smile.jpg', 'smileface/face5_smile.jpg'];
     var smileyFaces = [];
 // 设置起始和结束编号
     var startNumber = 1;
@@ -53,8 +49,7 @@ function selectSmileyFace() {
     const randomIndex = Math.floor(Math.random() * smileyFaces.length);
     return 'files/' + smileyFaces[randomIndex];
 }
-
-function initGame(level = parseInt(document.getElementById('level-select').value)){
+function initGame(level = parseInt(document.getElementById('level-select').value)) {
     faces = [];
     smileyFaceIndexInArray = getRandomInt(0, level*level-1);
     const numberOfFaces = level * level;
@@ -62,6 +57,11 @@ function initGame(level = parseInt(document.getElementById('level-select').value
     // 随机选择一个笑脸图片
     const smileyFaceSrc = selectSmileyFace();
     usedFaces.add(smileyFaceSrc); // 记录已选择的笑脸图片
+    // 移除笑脸图片，以便从非笑脸图片中随机选择
+    // const nonSmileyFaces = ['face1.jpg', 'face2.jpg', 'face3.jpg', 'face4.jpg', 'face5.jpg', 'face6.jpg', 'face7.jpg', 'face8.jpg', 'face9.jpg', 'face10.jpg',
+    //                     'face11.jpg', 'face16.jpg', 'face17.jpg', 'face22.jpg', 'face23.jpg', 'face28.jpg',
+    //                     'face12.jpg', 'face15.jpg', 'face18.jpg', 'face21.jpg', 'face24.jpg', 'face27.jpg',
+    //                     'face13.jpg', 'face14.jpg', 'face19.jpg', 'face20.jpg', 'face25.jpg', 'face26.jpg'];
     var nonSmileyFaces = [];
     var startNumber = 2163;
     var endNumber = 4000;
@@ -70,6 +70,7 @@ function initGame(level = parseInt(document.getElementById('level-select').value
         var fileName = "file" + paddedNumber + ".jpg";
         nonSmileyFaces.push(fileName);
     }
+    // console.log(nonSmileyFaces);
     nonSmileyFaces.splice(nonSmileyFaces.indexOf(smileyFaceSrc), 1); // 确保笑脸图片不会出现在非笑脸列表中
     for (let i = 0; i < numberOfFaces; i++) {
         let faceSrc;
@@ -102,16 +103,7 @@ function initGame(level = parseInt(document.getElementById('level-select').value
         container.appendChild(face);
         face.addEventListener('click', handleClick);
     }
-        const isLevel1 = level === 1;
-        const meetsAccuracyRequirement = accuracy >= 90;
-        const meetsCorrectGuessesRequirement = correctGuesses >= 20;
-
-        if (isLevel1 && meetsAccuracyRequirement && meetsCorrectGuessesRequirement) {
-            levelUnlocks.level2 = true;
-            levelUnlocks.level3 = true;
-    }
 }
-
 function displayTimer() {
     let remainingTime = countdownTime;
     countdownIntervalId = setInterval(() => {
@@ -121,23 +113,9 @@ function displayTimer() {
             clearInterval(countdownIntervalId);
             timerDisplay.textContent = '00';
             finishGame(); // 游戏结束
-            updateUnlockUI();
         }
     }, 1000);
 }
-
-function updateUnlockUI() {
-    const levelSelect = document.getElementById('level-select');
-  
-    // 遍历levelSelect的选项，根据levelUnlocks状态禁用或启用选项
-    for (const option of levelSelect.options) {
-      const levelNumber = parseInt(option.value, 10);
-      if (levelNumber === 2 || levelNumber === 3) {
-        option.disabled = !levelUnlocks[`level${levelNumber}`];
-      }
-    }
-  }
-
 function handleClick(event) {
     const clickedFace = event.target;
     const clickedFaceIndex = clickedFace.index; // 通过索引属性获取被点击图片的索引
@@ -163,39 +141,27 @@ function refreshFaces() {
     smileyFaceIndexInArray = -1; // 重置笑脸索引
     initGame(); // 重新初始化游戏
 }
-
 function finishGame() {
     clearInterval(countdownIntervalId); // 停止倒计时
     container.innerHTML = ''; // 清空图片
     const totalAttempts = correctGuesses + incorrectGuesses; // 总尝试次数
     const accuracy = Math.round((correctGuesses / totalAttempts) * 100); // 计算正确率
-
-    // 检查是否满足解锁条件
-    const isLevel1 = level === 1;
-    const meetsAccuracyRequirement = accuracy >= 90;
-    const meetsCorrectGuessesRequirement = correctGuesses >= 20;
-
-    if (isLevel1 && meetsAccuracyRequirement && meetsCorrectGuessesRequirement) {
-        levelUnlocks.level2 = true;
-        levelUnlocks.level3 = true;
-    }
-
-    messageElem.textContent = `时间到！你共尝试了 ${totalAttempts} 次，正确率为 ${accuracy}%。你找到了 ${correctGuesses} 次笑脸。'`;
+    messageElem.textContent = `时间到！你共尝试了 ${totalAttempts} 次，正确率为 ${accuracy}%。  
+    你找到了 ${correctGuesses} 次笑脸。'`;
     messageElem.style.display = 'block';
     startButton.style.display = 'block'; // 显示开始按钮
     const level = parseInt(document.getElementById('level-select').value);
     const userEmail = localStorage.getItem('email');
     const gameData = {
-        userId: userEmail,
-        level: level,
-        timePlayed: countdownTime,
-        correctGuesses: correctGuesses,
-        incorrectGuesses: incorrectGuesses,
-        accuracy: accuracy,
-    };
+    userId: userEmail,
+    level: level,
+    timePlayed: countdownTime,
+    correctGuesses: correctGuesses,
+    incorrectGuesses: incorrectGuesses,
+    accuracy: accuracy,
+};
     sendGameDataToServer(gameData);
 }
-
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
