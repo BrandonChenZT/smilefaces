@@ -144,6 +144,8 @@ footer a:hover {
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 380px; /* 例如：设置高度为300像素 */
+    
 }
 
 #message-form label {
@@ -153,11 +155,13 @@ footer a:hover {
 
 #message-form input[type="text"],
 #message-form textarea {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    resize: none;
+    height: 150px;
 }
 
 #message-form button {
