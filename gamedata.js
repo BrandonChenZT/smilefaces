@@ -69,16 +69,23 @@ app.get('/api/user-game-data/:userEmail', (req, res) => {
     });
 });
 
-app.get('/api/user-game-data', async (req, res) => {
+async function getRecentGameData(userId, limit = 10) {
+    const [rows] = await connection.execute(`
+      SELECT *
+      FROM games
+      WHERE user_id = ?
+      ORDER BY played_at DESC
+      LIMIT ?
+    `, [userId, limit]);
+  
+    return rows;
+  }
+
+  app.get('/api/user-game-data', async (req, res) => {
     try {
       const { userId, limit = 10 } = req.query;
-      const whereClause = { userId: userId };
-      
-      const recentGameData = await UserGame.findAll({
-        where: whereClause,
-        order: [['played_at', 'DESC']],
-        limit: parseInt(limit, 10),
-      });
+  
+      const recentGameData = await getRecentGameData(userId, limit);
   
       if (recentGameData.length === 0) {
         return res.status(404).json({ message: 'No game data found for the given user' });
@@ -90,8 +97,6 @@ app.get('/api/user-game-data', async (req, res) => {
       res.status(500).json({ error: 'Failed to fetch recent game data' });
     }
   });
-  
-  // ...
 
 // 启动Express服务器
 const PORT = process.env.PORT || 3003;
