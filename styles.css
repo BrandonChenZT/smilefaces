@@ -184,3 +184,29 @@ footer a:hover {
 .hidden {
     display: none;
 }
+
+/* 测试问题的基本样式 */
+#quiz {
+    display: block; /* 默认显示 */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 游戏容器默认隐藏 */
+#game-container {
+    display: none; /* 默认隐藏 */
+    /* 其他样式 */
+}
+
+/* 当游戏容器需要显示时 */
+#game-container.show {
+    display: block;
+}
+
+/* 消息提示元素的基础样式 */
+#message {
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+}
+

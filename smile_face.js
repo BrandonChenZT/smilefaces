@@ -193,7 +193,3 @@ function sendGameDataToServer(gameData) {
         });
 }
 
-// 游戏结束时，构建要发送的数据
-
-
-// 发送POST请求
