@@ -39,8 +39,8 @@ function calculateProgressAndUnlock() {
       
     }
     
-    const averageAccuracy1 = totalGames1 > 0 ? totalAccuracy1 / totalGames1 : 0;
-    const averageAccuracy2 = totalGames2 > 0 ? totalAccuracy2 / totalGames2 : 0;
+    const averageAccuracy1 = totalGames1 > 0 ? totalAccuracy1 / 10 : 0;
+    const averageAccuracy2 = totalGames2 > 0 ? totalAccuracy2 / 20 : 0;
     let maxCorrectGuesses1 = 0;
     let maxCorrectGuesses2 = 0;
     for(let i = 0; i < recentGameData.length; i++) {
@@ -69,7 +69,8 @@ function calculateProgressAndUnlock() {
         const level3Option = levelSelect.options[2];
         if (
             progress1.averageAccuracy1 >= 0.8 &&
-            progress1.maxCorrectGuesses1 >= 30
+            progress1.maxCorrectGuesses1 >= 30&&
+            totalGames1 >= 10
         ) {
             level2Option.disabled = false;
         } else {
@@ -77,7 +78,8 @@ function calculateProgressAndUnlock() {
         }
         if (
             progress2.averageAccuracy2 >= 0.85 &&
-            progress2.maxCorrectGuesses2 >= 20
+            progress2.maxCorrectGuesses2 >= 20 &&
+            totalGames2 >= 20
         ) {
             level3Option.disabled = false;
             level2Option.disabled = false;
