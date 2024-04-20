@@ -1,0 +1,53 @@
+/* 游戏容器样式 */
+#game-container {
+    display: grid;
+    width: 100%;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+/* 笑脸图片的基础样式 */
+.face {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    object-fit: cover;
+    border: 1px solid transparent;
+}
+
+/* 消息提示元素的基础样式 */
+#message {
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+}
+
+/* 倒计时计时器的基础样式 */
+#timer {
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* 媒体查询 - 针对小屏幕设备 */
+@media (max-width: 767px) {
+    #game-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+/* 媒体查询 - 针对中等屏幕设备 */
+@media (min-width: 768px) and (max-width: 1199px) {
+    #game-container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+}
+
+/* 媒体查询 - 针对大屏幕设备 */
+@media (min-width: 1200px) {
+    #game-container {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+}
