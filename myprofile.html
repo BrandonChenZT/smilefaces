@@ -36,6 +36,30 @@
         <p>版权所有 &copy; 2024 我的个人网站</p>
         <p>联系邮箱: email@example.com | <a href="https://github.com/yourusername">GitHub</a></p> 
     </footer>
-    
+    <script>
+        let userEmail = localStorage.getItem('email');
+
+        if (userEmail !== null) {
+    // 发送GET请求获取用户的游戏数据
+    fetch(`/api/user-game-data/${userEmail}`, {
+        method: 'GET',
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } 
+        throw new Error('Network response was not ok.');
+    })
+    .then(data => {
+        console.log('User game data:', data);
+        // 在这里处理获取到的游戏数据
+    })
+    .catch(error => {
+        console.error('Error fetching user game data:', error);
+    });
+} else {
+    console.log("User ID not found in local storage.");
+}
+    </script>
 </body>
 </html>
