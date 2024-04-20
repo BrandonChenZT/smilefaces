@@ -49,13 +49,12 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>User ID</th>
+                    <th>Played At</th>
                     <th>Level</th>
                     <th>Time Played</th>
                     <th>Correct Guesses</th>
                     <th>Incorrect Guesses</th>
                     <th>Accuracy</th>
-                    <th>Played At</th>
                 </tr>
             </thead>
             <tbody id="gameDataBody">
@@ -97,7 +96,7 @@
                         <td>${gameRecord.time_played}</td>
                         <td>${gameRecord.correct_guesses}</td>
                         <td>${gameRecord.incorrect_guesses}</td>
-                        <td>${(gameRecord.accuracy * 100).toFixed(2)}%</td>
+                        <td>${(gameRecord.accuracy).toFixed(2)}%</td>
                     `;
 
                     tableBody.appendChild(newRow);
