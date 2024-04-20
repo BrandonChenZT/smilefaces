@@ -69,6 +69,30 @@ app.get('/api/user-game-data/:userEmail', (req, res) => {
     });
 });
 
+app.get('/api/user-game-data', async (req, res) => {
+    try {
+      const { userId, limit = 10 } = req.query;
+      const whereClause = { userId: userId };
+      
+      const recentGameData = await UserGame.findAll({
+        where: whereClause,
+        order: [['played_at', 'DESC']],
+        limit: parseInt(limit, 10),
+      });
+  
+      if (recentGameData.length === 0) {
+        return res.status(404).json({ message: 'No game data found for the given user' });
+      }
+  
+      res.json(recentGameData);
+    } catch (error) {
+      console.error('Error fetching recent game data:', error);
+      res.status(500).json({ error: 'Failed to fetch recent game data' });
+    }
+  });
+  
+  // ...
+
 // 启动Express服务器
 const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
