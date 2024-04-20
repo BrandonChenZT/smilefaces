@@ -189,3 +189,15 @@ footer a:hover {
     display: none;
 }
 
+body {
+    font-family: Arial, sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+#result {
+    margin-top: 2em;
+    text-align: center;
+}
