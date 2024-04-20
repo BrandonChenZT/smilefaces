@@ -48,6 +48,27 @@ app.post('/api/submit-game-data', (req, res) => {
     });
 });
 
+app.get('/api/user-game-data/:userEmail', (req, res) => {
+    const userEmail = req.params.userEmail;
+
+    const sql = 'SELECT * FROM games WHERE user_id = ?';
+    const value = [userEmail];
+
+    connection.query(sql, value, (error, results) => {
+        if (error) {
+            console.error('Error retrieving game data from the database:', error);
+            res.status(500).send('Internal Server Error');
+        } else {
+            if (results.length > 0) {
+                console.log('User game data retrieved successfully from the database.');
+                res.status(200).json(results);
+            } else {
+                res.status(404).send('No game data found for the specified user.');
+            }
+        }
+    });
+});
+
 // 启动Express服务器
 const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
