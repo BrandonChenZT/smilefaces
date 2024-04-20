@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人网站 - 测试</title>
+    <!-- 引入外部样式表 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>欢迎来到我的个人网站</h1>
+        <nav>
+            <li><a href="about.html">关于我</a></li>
+            <li><a href="portfolio.html">作品集</a></li>
+            <li><a href="contact.html">联系方式</a></li>
+            <li id="user-authentication-status">
+                <!-- 如果用户已登录，则显示邮箱 -->
+                <a href="myprofile.html" id="user-email-link" class="user-email hidden">个人主页</a>
+                <!-- 如果用户未登录，则显示登录和注册链接 -->
+                <a href="login.html" id="login-link">登录</a>
+                <a href="register.html" id="register-link">注册</a>
+                <a href="#" id="logout-link" class="hidden">退出登录</a>
+            </li>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>快乐度测试</h2>
+        
+        <!-- 快乐度测试内容 -->
+        <form id="happiness-test">
+            <!-- ...（省略测试问题部分，保持原样）... -->
+        </form>
+
+        <div id="result" class="hidden">
+            <!-- ...（省略结果部分，保持原样）... -->
+        </div>
+    </main>
+
+    <footer>
+        <p>版权所有 &copy; 2024 我的个人网站</p>
+        <p>联系邮箱: email@example.com | <a href="https://github.com/yourusername">GitHub</a></p>
+    </footer>
+
+    <!-- 引入测试相关的JavaScript文件 -->
+    <script src="test_before_game.js"></script>
+</body>
+</html>
