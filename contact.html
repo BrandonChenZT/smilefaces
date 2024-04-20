@@ -13,6 +13,14 @@
             <li><a href="index.html">首页</a></li>
             <li><a href="portfolio.html">作品集</a></li>
             <li><a href="about.html">关于我</a></li>
+            <li id="user-authentication-status">
+                <!-- 如果用户已登录，则显示邮箱 -->
+                <a href="myprofile.html" id="user-email-link" class="user-email hidden">个人主页</a>
+                <!-- 如果用户未登录，则显示登录和注册链接 -->
+                <a href="login.html" id="login-link">登录</a>
+                <a href="register.html" id="register-link">注册</a>
+                <a href="#" id="logout-link" class="hidden">退出登录</a>
+            </li>
         </nav>
     </header>
     <main>

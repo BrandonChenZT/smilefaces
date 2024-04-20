@@ -13,20 +13,40 @@
             <li><a href="index.html">首页</a></li>
             <li><a href="about.html">关于我</a></li>
             <li><a href="contact.html">联系方式</a></li>
+            <li id="user-authentication-status">
+                <!-- 如果用户已登录，则显示邮箱 -->
+                <a href="myprofile.html" id="user-email-link" class="user-email hidden">个人主页</a>
+                <!-- 如果用户未登录，则显示登录和注册链接 -->
+                <a href="login.html" id="login-link">登录</a>
+                <a href="register.html" id="register-link">注册</a>
+                <a href="#" id="logout-link" class="hidden">退出登录</a>
+            </li>
         </nav>
     </header>
     <main>
         <p>这里可以展示您的一些项目或作品。您可以添加图片、链接或者描述来展示您的成就。</p>
         <main id="portfolio">
             <!-- 其他作品集项目 -->
-            <div class="portfolio-item">
-                <h3>笑脸识别游戏</h3>
-                <p>这是一个简单的笑脸识别游戏，玩家需要在限定时间内找出隐藏的笑脸。</p>
-                <div class="container" id="game-container"></div>
-                <div id="message" class="message"></div>
-                <div id="timer" class="timer">120</div>
-                <button id="start-button">开始游戏</button>
-            </div>
+            <h2>最新作品展示：</h2>
+        <div class="portfolio-item">
+            <h3>笑脸识别游戏</h3>
+            <p>这是一个简单的笑脸识别游戏，玩家需要在限定时间内找出隐藏的笑脸。</p>
+            <!-- 添加等级选择、开始按钮和游戏容器 -->
+            <label for="level-select">选择等级:</label>
+            <select id="level-select">
+                <option value="3">Level 1 (3x3)</option>
+                <option value="4">Level 2 (4x4)</option>
+                <option value="5">Level 3 (5x5)</option>
+            </select>
+            <button id="start-button">开始游戏</button>
+            <!-- 游戏容器 -->
+            <div id="game-container"></div>
+            <!-- 消息提示 -->
+            <div id="message" class="message"></div>
+            <!-- 倒计时计时器 -->
+            <div id="timer" class="timer">120</div>
+        </div>
+        <!-- 页面内容将根据用户的点击跳转到相应的页面 -->
             <!-- 更多作品集项目 -->
         </main>
     </main>
