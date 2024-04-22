@@ -23,14 +23,14 @@ function calculateProgressAndUnlock() {
       const game = recentGameData[i];
       if(game['level'] === 3) {
         totalCorrectGuesses1 += game.correct_guesses;
-        totalAccuracy1 += game.accuracy * 100;
+        totalAccuracy1 += game.accuracy;
         totalGames1 += 1;
         if(totalGames1 >= 10){
           break;
         }
       }else if(game['level'] === 4) {
         totalCorrectGuesses2 += game.correct_guesses;
-        totalAccuracy2 += game.accuracy * 100;
+        totalAccuracy2 += game.accuracy;
         totalGames2 += 1;
         if(totalGames2 >= 20){
           break;
