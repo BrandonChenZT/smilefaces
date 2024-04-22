@@ -153,11 +153,11 @@ function finishGame() {
     const level = parseInt(document.getElementById('level-select').value);
     const userEmail = localStorage.getItem('email');
     const gameData = {
-    userId: userEmail,
+    user_id: userEmail,
     level: level,
-    timePlayed: countdownTime,
-    correctGuesses: correctGuesses,
-    incorrectGuesses: incorrectGuesses,
+    time_played: countdownTime,
+    correct_guesses: correctGuesses,
+    incorrect_guesses: incorrectGuesses,
     accuracy: accuracy,
 };
     sendGameDataToServer(gameData);
