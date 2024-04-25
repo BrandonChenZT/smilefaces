@@ -61,6 +61,22 @@ app.get('/api/user-game-data/:userEmail', (req, res) => {
     });
 });
 
+app.get('/api/user-game-data/', (req, res) => {
+
+    const sql = 'SELECT * FROM games';
+
+    connection.query(sql, (error, results) => {
+        if (error) {
+            console.error('Error retrieving game data from the database:', error);
+            res.status(500).send('Internal Server Error');
+        } else {
+            if (results.length > 0) {
+                console.log('User game data retrieved successfully from the database.');
+                res.status(200).json(results);
+            }
+        }
+    });
+});
 function getRecentGameData(userId, limit = 10, callback) {
   connection.query(`
     SELECT *
