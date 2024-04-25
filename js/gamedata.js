@@ -62,8 +62,7 @@ app.get('/api/user-game-data/:userEmail', (req, res) => {
 });
 
 app.get('/api/user-game-data/', (req, res) => {
-
-    const sql = 'SELECT * FROM games';
+    const sql = 'SELECT * FROM games WHERE DATE(played_at) = CURDATE()';
 
     connection.query(sql, (error, results) => {
         if (error) {
@@ -73,6 +72,9 @@ app.get('/api/user-game-data/', (req, res) => {
             if (results.length > 0) {
                 console.log('User game data retrieved successfully from the database.');
                 res.status(200).json(results);
+            } else {
+                console.log('No game data found for today.');
+                res.status(404).send('No game data found for today.');
             }
         }
     });

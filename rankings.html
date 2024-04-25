@@ -4,25 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页</title>
+    <title>排行榜</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script>
-        window.onload = function() {
-            const authToken = localStorage.getItem('authToken');
-            const email = localStorage.getItem('email');
-            if (email) {
-                document.title = '个人主页 - ' + email.split('@')[0];
-                document.querySelector('header h1').textContent = email;
-            } else {
-                document.title = '个人主页';
-                document.querySelector('header h1').textContent = '个人主页';
-            }
-        };
-    </script>
 </head>
 <body>
     <header>
-        <h1></h1>
+        <h1>排行榜</h1>
         <nav>
             <li><a href="index.html">首页</a></li>
             <li><a href="about.html">关于我</a></li>
