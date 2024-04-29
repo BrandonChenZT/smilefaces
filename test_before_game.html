@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的个人网站 - 测试</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/test.css">
 </head>
 <body>
     <header>
@@ -28,12 +29,224 @@
         <h2>快乐度测试</h2>
         
         <!-- 快乐度测试内容 -->
-        <form id="happiness-test">
-            <!-- ...（省略测试问题部分，保持原样）... -->
-        </form>
-
-        <div id="result" class="hidden">
-            <!-- ...（省略结果部分，保持原样）... -->
+        <div class="container">
+          <form id="quiz-form">
+            <div class="container">
+                <h1>开心程度测试</h1>
+                <form id="quiz-form">
+                  <!-- 问题1 -->
+                  <div class="question">
+                    <p>当你遇到困难时，你的第一反应是什么？</p>
+                    <label class="option">
+                      <input type="radio" name="q1" value="1">
+                      沮丧和失望（1分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q1" value="2">
+                      焦虑和不安（2分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q1" value="3">
+                      探索解决方案（3分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q1" value="4">
+                      乐观并相信自己能够克服（4分）
+                    </label>
+                  </div>
+              
+                  <!-- 问题2 -->
+                  <div class="question">
+                    <p>你如何看待生活中的小幸福？</p>
+                    <label class="option">
+                      <input type="radio" name="q2" value="1">
+                      不太关注（1分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q2" value="2">
+                      认为是暂时的（2分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q2" value="3">
+                      享受但不过分重视（3分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q2" value="4">
+                      非常珍惜并感到满足（4分）
+                    </label>
+                  </div>
+              
+                  <!-- 问题3 -->
+                  <div class="question">
+                    <p>你如何看待自己的未来？</p>
+                    <label class="option">
+                      <input type="radio" name="q3" value="1">
+                      悲观，认为不会有什么改变（1分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q3" value="2">
+                      担忧，但有一些希望（2分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q3" value="3">
+                      期待，相信自己能够实现目标（3分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q3" value="4">
+                      非常乐观，充满期待（4分）
+                    </label>
+                  </div>
+              
+                  <!-- 问题4 -->
+                  <div class="question">
+                    <p>你如何处理失败？</p>
+                    <label class="option">
+                      <input type="radio" name="q4" value="1">
+                      放弃，认为自己不够好（1分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q4" value="2">
+                      感到失望，但尝试再次尝试（2分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q4" value="3">
+                      分析原因，制定改进计划（3分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q4" value="4">
+                      视为学习机会，积极寻求成长（4分）
+                    </label>
+                  </div>
+              
+                  <!-- 问题5 -->
+                  <div class="question">
+                    <p>你对周围人的态度是怎样的？</p>
+                    <label class="option">
+                      <input type="radio" name="q5" value="1">
+                      冷漠，不太关心他人（1分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q5" value="2">
+                      保持距离，只在必要时互动（2分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q5" value="3">
+                      友好，乐于帮助他人（3分）
+                    </label>
+                    <label class="option">
+                      <input type="radio" name="q5" value="4">
+                      热情，经常主动帮助和支持他人（4分）
+                    </label>
+                  </div>
+                            
+                                <!-- 问题6 -->
+                <div class="question">
+                    <p>你如何看待自己的健康？</p>
+                    <label class="option">
+                    <input type="radio" name="q6" value="1">
+                    忽略，不太关心（1分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q6" value="2">
+                    担心，但没有采取太多行动（2分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q6" value="3">
+                    重视，定期进行健康检查（3分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q6" value="4">
+                    非常重视，积极锻炼和保持健康饮食（4分）
+                    </label>
+                </div>
+                
+                <!-- 问题7 -->
+                <div class="question">
+                    <p>你如何应对压力？</p>
+                    <label class="option">
+                    <input type="radio" name="q7" value="1">
+                    逃避，不去面对（1分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q7" value="2">
+                    感到不安，但尝试应对（2分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q7" value="3">
+                    寻求支持，与他人交流（3分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q7" value="4">
+                    使用有效的压力管理技巧（4分）
+                    </label>
+                </div>
+                
+                <!-- 问题8 -->
+                <div class="question">
+                    <p>你对自己的工作满意吗？</p>
+                    <label class="option">
+                    <input type="radio" name="q8" value="1">
+                    非常不满意（1分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q8" value="2">
+                    有些不满意，但能忍受（2分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q8" value="3">
+                    满意，有一些挑战和成长机会（3分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q8" value="4">
+                    非常满意，感到充实和有成就感（4分）
+                    </label>
+                </div>
+                
+                <!-- 问题9 -->
+                <div class="question">
+                    <p>你如何看待自己的社交生活？</p>
+                    <label class="option">
+                    <input type="radio" name="q9" value="1">
+                    孤独，很少与人交往（1分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q9" value="2">
+                    偶尔社交，但不太多（2分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q9" value="3">
+                    有一些固定的社交活动（3分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q9" value="4">
+                    经常参与社交活动，感到快乐和满足（4分）
+                    </label>
+                </div>
+                
+                <!-- 问题10 -->
+                <div class="question">
+                    <p>你对自己的财务状况满意吗？</p>
+                    <label class="option">
+                    <input type="radio" name="q10" value="1">
+                    非常不满意，经常担忧（1分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q10" value="2">
+                    有些担忧，但能够维持基本生活（2分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q10" value="3">
+                    满意，能够满足需求和有一些储蓄（3分）
+                    </label>
+                    <label class="option">
+                    <input type="radio" name="q10" value="4">
+                    非常满意，财务自由，能够实现梦想（4分）
+                    </label>
+                </div>  
+              
+            <!-- 提交按钮 -->
+            <button type="button" class="submit-btn" onclick="submitQuiz()">提交答案</button>
+          </form>
         </div>
     </main>
 
@@ -42,5 +255,18 @@
         <p>联系邮箱: email@example.com | <a href="https://github.com/yourusername">GitHub</a></p>
     </footer>
     <script src="js/test_before_game.js"></script>
+    <script>
+      function submitQuiz() {
+        let score = 0;
+        const form = document.getElementById('quiz-form');
+        const radioButtons = form.querySelectorAll('input[type="radio"]:checked');
+
+        radioButtons.forEach(radio => {
+          score += parseInt(radio.value);
+        });
+
+        alert('您的得分是：' + score + '\n分数越高，说明开心程度越高。');
+      }
+    </script>
 </body>
 </html>

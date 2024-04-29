@@ -1,0 +1,80 @@
+/* 添加的样式 */
+
+/* 问题样式 */
+.question {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f0f0f0; /* 轻微的背景色，区分问题 */
+    border-radius: 4px; /* 圆角边框 */
+  }
+  
+  /* 选项样式 */
+  .option {
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px;
+    cursor: pointer; /* 鼠标悬停时显示指针，提示可点击 */
+  }
+  
+  /* 选项悬停样式 */
+  .option:hover {
+    background-color: #f7f7f7; /* 悬停时轻微高亮 */
+  }
+  
+  /* 提交按钮样式 */
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #fff; /* 文字颜色 */
+    background-color: #007bff; /* 深蓝色背景 */
+    border: none; /* 无边框 */
+    border-radius: 4px; /* 圆角边框 */
+    cursor: pointer; /* 鼠标悬停时显示指针 */
+  }
+  
+  /* 提交按钮悬停样式 */
+  .submit-btn:hover {
+    background-color: #0056b3; /* 悬停时深色背景 */
+  }
+  
+  /* 结果样式 */
+  #result {
+    margin-top: 20px; /* 结果与问题之间的间距 */
+    padding: 10px;
+    background-color: #e7e7e7; /* 轻微的背景色，区分结果 */
+    border-radius: 4px; /* 圆角边框 */
+    text-align: center; /* 文本居中 */
+  }
+  
+  /* 隐藏元素样式 */
+  .hidden {
+    display: none; /* 隐藏元素，不占用空间 */
+  }
+  
+  /* 用户认证状态样式 */
+  #user-authentication-status {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* 用户邮箱链接样式 */
+  #user-email-link {
+    margin-left: 1rem;
+    color: #333;
+  }
+  
+  /* 登录、注册、退出登录链接样式 */
+  #login-link, #register-link, #logout-link {
+    margin-left: 1rem;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  /* 登录、注册、退出登录链接悬停样式 */
+  #login-link:hover, #register-link:hover, #logout-link:hover {
+    color: #62a8ea;
+  }
+  
