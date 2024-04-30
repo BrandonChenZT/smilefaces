@@ -254,26 +254,69 @@
     </footer>
     <script src="js/test_before_game.js"></script>
     <script>
-        function submitQuiz() {
-          let score = 0;
-          const form = document.getElementById('quiz-form');
-          const radioButtons = form.querySelectorAll('input[type="radio"]:checked');
-      
-          radioButtons.forEach(radio => {
-            score += parseInt(radio.value);
-          });
-      
-          // 根据得分范围评估开心程度
-          if (score >= 41) {
-            alert('您的得分是：' + score + '\n您非常开心，生活态度积极，能够很好地应对生活中的挑战。您可以放松地玩笑脸识别游戏');
-          } else if (score >= 31) {
-            alert('您的得分是：' + score + '\n您比较开心，生活态度积极，但仍有提升幸福感的潜力。在闲暇时刻，请多尝试笑脸识别游戏');
-          } else if (score >= 21) {
-            alert('您的得分是：' + score + '\n您一般，有一些开心和满足的时刻，但也有改进的空间。请多尝试笑脸识别游戏');
-          } else {
-            alert('您的得分是：' + score + '\n您不开心，可能需要关注和改善自己的心理状态。 请多尝试笑脸识别游戏');
-          }
+        async function saveScoreToServer(username, score) {
+            try {
+                const response = await fetch('http://localhost:3000/saveTestResult', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, score })
+                });
+
+                if (!response.ok) throw new Error('Failed to save data to server.');
+                
+                const data = await response.json();
+                console.log('Data saved successfully with ID:', data.id);
+                return true; // 成功保存
+            } catch (error) {
+                console.error('Error saving data to server:', error);
+                return false; // 保存失败
+            }
         }
+
+        function evaluateAndSaveScore() {
+            let score = 0;
+            const form = document.getElementById('quiz-form');
+            const radioButtons = form.querySelectorAll('input[type="radio"]:checked');
+          
+            radioButtons.forEach(radio => {
+                score += parseInt(radio.value);
+            });
+          
+            let message;
+            if (score >= 41) {
+                message = '您非常开心，生活态度积极，能够很好地应对生活中的挑战。您可以放松地玩笑脸识别游戏';
+            } else if (score >= 31) {
+                message = '您比较开心，生活态度积极，但仍有提升幸福感的潜力。在闲暇时刻，请多尝试笑脸识别游戏';
+            } else if (score >= 21) {
+                message = '您一般，有一些开心和满足的时刻，但也有改进的空间。请多尝试笑脸识别游戏';
+            } else {
+                message = '您不开心，可能需要关注和改善自己的心理状态。 请多尝试笑脸识别游戏';
+            }
+            
+            alert('您的得分是：' + score + '\n' + message);
+
+            // 假设有一个默认的用户名
+            const username = localStorage.getItem('email') || 'default_user';
+            
+            (async () => {
+                try {
+                    const isSaved = await saveScoreToServer(username, score);
+                    if (isSaved) {
+                        alert('成绩已成功保存！');
+                    } else {
+                        alert('成绩保存失败，请稍后再试。');
+                    }
+                } catch (error) {
+                    alert('保存过程中发生错误，请重试。');
+                    console.error('Error during saving:', error);
+                }
+            })();
+        }
+
+        // 绑定提交按钮的点击事件
+        document.querySelector('.submit-btn').addEventListener('click', evaluateAndSaveScore);
       </script>
     </script>
     <script src="js/getprogress.js"></script>
