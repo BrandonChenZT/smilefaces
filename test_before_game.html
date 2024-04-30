@@ -256,7 +256,7 @@
     <script>
         async function saveScoreToServer(username, score) {
             try {
-                const response = await fetch('http://localhost:3000/saveTestResult', {
+                const response = await fetch('http://localhost:3004/submit-test-result', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
