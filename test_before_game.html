@@ -243,7 +243,7 @@
                 </div>
                     
             <!-- 提交按钮 -->
-            <button type="button" class="submit-btn" onclick="submitQuiz()">提交答案</button>
+            <button type="button" class="submit-btn">提交答案</button>
           </form>
         </div>
     </main>
@@ -252,11 +252,10 @@
         <p>版权所有 &copy; 2024 我的个人网站</p>
         <p>联系邮箱: email@example.com | <a href="https://github.com/yourusername">GitHub</a></p>
     </footer>
-    <script src="js/test_before_game.js"></script>
     <script>
         function saveScoreToServer(username, score) {
     return new Promise((resolve, reject) => {
-        fetch('http://localhost:3004/submit-test-result', {
+        fetch('/api/submit-test-result', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
