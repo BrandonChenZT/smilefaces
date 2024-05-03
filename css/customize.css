@@ -7,6 +7,9 @@ h1 {
     text-align: center; /* 文本居中对齐 */
   }
   
+h2 {
+    text-align: center; /* 文本居中对齐 */
+  }
   /* 为高分辨率设备优化字体渲染 */
   @media screen and (-webkit-min-device-pixel-ratio: 2),
          screen and (min-resolution: 192dpi) {
