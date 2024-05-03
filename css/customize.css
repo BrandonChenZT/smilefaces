@@ -1,0 +1,16 @@
+h1 {
+    font-family: 'Lobster', cursive; /* 使用Lobster字体 */
+    font-size: 2em; /* 字体大小 */
+    color: #2c2c2c; /* 字体颜色 */
+    text-shadow: 1px 1px 2px #aaa; /* 文字阴影效果 */
+    margin: 0; /* 移除默认的外边距 */
+    text-align: center; /* 文本居中对齐 */
+  }
+  
+  /* 为高分辨率设备优化字体渲染 */
+  @media screen and (-webkit-min-device-pixel-ratio: 2),
+         screen and (min-resolution: 192dpi) {
+    h1 {
+      font-weight: lighter; /* 使字体更细 */
+    }
+  }
