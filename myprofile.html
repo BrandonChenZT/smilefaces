@@ -92,7 +92,7 @@
                     newRow.innerHTML = `
                         <td>${index++}</td>
                         <td>${new Date(gameRecord.played_at).toLocaleDateString()}</td>
-                        <td>${gameRecord.level}</td>
+                        <td>${gameRecord.level-2}</td>
                         <td>${gameRecord.time_played}</td>
                         <td>${gameRecord.correct_guesses}</td>
                         <td>${gameRecord.incorrect_guesses}</td>
