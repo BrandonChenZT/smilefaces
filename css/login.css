@@ -24,7 +24,7 @@
   .form-group input[type="email"],
   .form-group input[type="password"] {
     display: block;
-    width: 100%;
+    width: 98%;
     padding: 12px 15px;
     font-size: 16px;
     border: 1px solid #d1d8dd;

@@ -11,7 +11,7 @@
     <header>
         <h1>欢迎来到我的个人网站</h1>
         <nav>
-            <li><a href="about.html">关于我</a></li>
+            <li><a href="about.html">关于我们</a></li>
             <li><a href="portfolio.html">作品集</a></li>
             <li><a href="contact.html">联系方式</a></li>
             <li id="user-authentication-status">
@@ -307,6 +307,7 @@ function evaluateAndSaveScore() {
     .then(isSaved => {
         if (isSaved) {
             alert('成绩已成功保存！');
+            window.location.href = 'index.html';
         } else {
             alert('成绩保存失败，请稍后再试。');
         }
@@ -322,5 +323,6 @@ document.querySelector('.submit-btn').addEventListener('click', evaluateAndSaveS
       </script>
     </script>
     <script src="js/getprogress.js"></script>
+    <script src="js/get_username.js"></script>
 </body>
 </html>
