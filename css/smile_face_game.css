@@ -51,3 +51,31 @@
         grid-template-rows: repeat(5, 1fr);
     }
 }
+
+/* 游戏按钮的CSS样式 */
+#start-button {
+    padding: 8px 15px; /* 减小按钮内部空间 */
+    font-size: 14px; /* 减小字体大小 */
+    color: #fff; /* 字体颜色保持不变 */
+    background-color: #4CAF50; /* 背景颜色保持不变 */
+    border: none; /* 无边框 */
+    border-radius: 3px; /* 减小圆角半径 */
+    cursor: pointer; /* 鼠标悬停效果保持不变 */
+    transition: background-color 0.3s ease, transform 0.1s ease; /* 添加transform渐变效果 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 添加轻微的阴影效果 */
+  }
+  
+  #start-button:hover {
+    background-color: #45a049; /* 鼠标悬停时的背景颜色保持不变 */
+    transform: translateY(-2px); /* 轻微提升按钮，制造按下效果 */
+  }
+  
+  #start-button:active {
+    transform: translateY(1px); /* 当按钮被按下时，向下移动一点 */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2); /* 阴影稍微减小 */
+  }
+  
+  #start-button:focus {
+    outline: none; /* 移除聚焦时的默认轮廓 */
+    box-shadow: 0 0 0 2px #333; /* 聚焦时的阴影效果，更加精致 */
+  }
